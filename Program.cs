@@ -12,6 +12,16 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<TaskDbContext>(options =>
     options.UseInMemoryDatabase("TaskDb"));
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost5174", b =>
+    {
+        b.WithOrigins("http://localhost:5174") // Ton frontend tourne sur localhost:5174
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -20,6 +30,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("AllowLocalhost5174"); // Appliquer la politique CORS
 
 app.UseHttpsRedirection();
 app.UseAuthorization();
