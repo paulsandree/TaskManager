@@ -32,6 +32,7 @@ public class TaskController : ControllerBase
     [HttpPost]
     public ActionResult<TaskItem> CreateTask(TaskItem task)
     {
+        task.CreatedDate = DateTime.Now;
         _context.Tasks.Add(task);
         _context.SaveChanges();
         return CreatedAtAction(nameof(GetTask), new { id = task.Id }, task);
@@ -46,6 +47,9 @@ public class TaskController : ControllerBase
         task.Title = updatedTask.Title;
         task.Description = updatedTask.Description;
         task.IsCompleted = updatedTask.IsCompleted;
+        task.DueDate = updatedTask.DueDate;
+        task.ModifiedDate = updatedTask.ModifiedDate;
+        task.Priority = updatedTask.Priority;
         _context.SaveChanges();
         
         return NoContent();
