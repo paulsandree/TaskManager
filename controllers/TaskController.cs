@@ -1,20 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using TaskManager.dbcontext;
 using TaskManager.models;
 
 namespace TaskManager.controllers;
 
 [ApiController]
+[Authorize]
 [Route("api/[controller]")]
 public class TaskController : ControllerBase
 {
-    private readonly TaskDbContext _context;
+    private readonly AppDbContext _context;
 
-    public TaskController(TaskDbContext context)
+    public TaskController(AppDbContext context)
     {
         _context = context;
     }
-
+    
     [HttpGet]
     public ActionResult<IEnumerable<TaskItem>> GetTasks()
     {

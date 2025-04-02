@@ -11,7 +11,7 @@ using TaskManager.dbcontext;
 
 namespace TaskManager.Migrations
 {
-    [DbContext(typeof(TaskDbContext))]
+    [DbContext(typeof(AppDbContext))]
     [Migration("20250328035836_AddPropertiesTask")]
     partial class AddPropertiesTask
     {

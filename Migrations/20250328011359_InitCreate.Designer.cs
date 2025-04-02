@@ -10,7 +10,7 @@ using TaskManager.dbcontext;
 
 namespace TaskManager.Migrations
 {
-    [DbContext(typeof(TaskDbContext))]
+    [DbContext(typeof(AppDbContext))]
     [Migration("20250328011359_InitCreate")]
     partial class InitCreate
     {
